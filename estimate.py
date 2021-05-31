@@ -1,5 +1,31 @@
 import math
 import unittest
+import random
+
+def wallis(n):
+        p_i = 1
+        while (n > 0):
+            p_i = p_i * (((4*n*n)/ ((4*n*n) - 1)))
+            n -= 1
+        return (2*p_i)
+    
+def monte_carlo(n_darts):
+        in_region = 0
+        n = n_darts
+        while (n>0):
+            x=random.random()
+            y=random.random()
+
+            s_dist=pow(x,2)+pow(y,2)
+            dist=math.sqrt(s_dist)
+
+            if (dist<1):
+                in_region+=1
+            n-=1
+
+        pi_2=(4*(in_region)/(n_darts))
+
+        return pi_2
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
